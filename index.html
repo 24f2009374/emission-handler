@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Emission Handler — Demo</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --on_time: #3fb950;
+    --delayed: #f85149;
+    --unknown: #d29922;
+    --conflicted: #a371f7;
+    --neutral: #58a6ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding: 32px;
+  }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  p.sub { color: var(--muted); margin-top: 0; margin-bottom: 24px; }
+  .scenarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  button.scenario-btn {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  button.scenario-btn:hover { border-color: var(--neutral); }
+  button.scenario-btn.active { border-color: var(--neutral); background: #1c2530; }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .panel h2 { margin-top: 0; font-size: 16px; }
+  .panel p.explains {
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.5;
+    border-left: 3px solid var(--neutral);
+    padding-left: 12px;
+    margin: 12px 0 20px;
+  }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  th, td { text-align: left; padding: 8px 10px; font-size: 13px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 500; }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0d1117;
+  }
+  .badge.on_time { background: var(--on_time); }
+  .badge.delayed { background: var(--delayed); }
+  .badge.unknown { background: var(--unknown); }
+  .badge.conflicted { background: var(--conflicted); }
+  .badge.in_transit, .badge.ack_waiting, .badge.pending { background: var(--neutral); }
+
+  .log-entry {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .log-entry:last-child { border-bottom: none; }
+  .log-entry .meta { color: var(--muted); font-size: 11.5px; margin-bottom: 3px; }
+  .log-type {
+    text-transform: uppercase;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--neutral);
+    margin-right: 8px;
+  }
+
+  #status { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h1>Emission Handler — Deterministic Demo</h1>
+<p class="sub">Checkpoint handshake state machine. Each scenario below is a fixed, reproducible test case.</p>
+
+<div id="scenario-buttons" class="scenarios"></div>
+<div id="status">Loading scenarios…</div>
+
+<div id="output"></div>
+
+<script>
+const API = "/api/simulate";
+const buttonsEl = document.getElementById("scenario-buttons");
+const statusEl = document.getElementById("status");
+const outputEl = document.getElementById("output");
+
+async function loadScenarioList() {
+  const res = await fetch(API);
+  const data = await res.json();
+  statusEl.textContent = "";
+  data.scenarios.forEach(s => {
+    const btn = document.createElement("button");
+    btn.className = "scenario-btn";
+    btn.textContent = s.title;
+    btn.onclick = () => runScenario(s.id, btn);
+    buttonsEl.appendChild(btn);
+  });
+  // auto-run the first scenario
+  if (data.scenarios.length) {
+    runScenario(data.scenarios[0].id, buttonsEl.children[0]);
+  }
+}
+
+async function runScenario(id, btnEl) {
+  document.querySelectorAll(".scenario-btn").forEach(b => b.classList.remove("active"));
+  if (btnEl) btnEl.classList.add("active");
+  statusEl.textContent = "Running scenario…";
+  const res = await fetch(`${API}?case=${id}`);
+  const data = await res.json();
+  statusEl.textContent = "";
+  render(data);
+}
+
+function render(data) {
+  const edgeRows = data.edges.map(e => `
+    <tr>
+      <td>${e.id}</td>
+      <td>${e.source} → ${e.target}</td>
+      <td>${e.expected_transit_minutes} min</td>
+      <td><span class="badge ${e.state}">${e.state}</span></td>
+      <td>${e.deadline ? new Date(e.deadline).toLocaleTimeString() : "—"}</td>
+    </tr>
+  `).join("");
+
+  const logRows = data.log.map(l => `
+    <div class="log-entry">
+      <div class="meta">${new Date(l.at).toLocaleTimeString()} · edge ${l.edge_id}</div>
+      <span class="log-type">${l.type}</span>${l.detail}
+    </div>
+  `).join("");
+
+  outputEl.innerHTML = `
+    <div class="panel">
+      <h2>${data.title}</h2>
+      <p class="explains">${data.explains}</p>
+      <table>
+        <thead>
+          <tr><th>Edge</th><th>Route</th><th>Expected</th><th>State</th><th>Deadline</th></tr>
+        </thead>
+        <tbody>${edgeRows}</tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <h2>Emission Log</h2>
+      ${logRows}
+    </div>
+  `;
+}
+
+loadScenarioList();
+</script>
+
+</body>
+</html>
