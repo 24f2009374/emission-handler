@@ -80,7 +80,7 @@ for leg in legs:
     if seq == 0:
         bump(nid_vendor(order["vendor_id"]), src_node, leg["state"])
     bump(src_node, tgt_node, leg["state"])
-    if seq == route_last_index.get(route_id, 0):
+    if seq == route_last_index.get(route_id, 0) - 1:
         bump(tgt_node, nid_project(order["project_id"]), leg["state"])
 
 for vid, v in vendors.items():

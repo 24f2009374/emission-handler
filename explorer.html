@@ -78,14 +78,32 @@ function edgeColor(e) {
   return "var(--delayed)";
 }
 
+// gap AFTER a given depth, i.e. { 0: X } controls the distance between
+// depth-0 (vendors) and depth-1 (first checkpoint row). Add more overrides
+// here if any other single transition gets crowded later.
+const DEFAULT_ROW_GAP = 150;
+const ROW_GAP_OVERRIDES = { 0: 320 };
+
+function rowYPositions(maxDepth, marginY) {
+  const ys = [marginY];
+  for (let d = 0; d < maxDepth; d++) {
+    const gap = ROW_GAP_OVERRIDES[d] ?? DEFAULT_ROW_GAP;
+    ys.push(ys[d] + gap);
+  }
+  return ys;
+}
+
 function layoutGraph(data) {
   const byDepth = {};
   data.nodes.forEach(n => { (byDepth[n.depth] = byDepth[n.depth] || []).push(n); });
   Object.values(byDepth).forEach(arr => arr.sort((a, b) => a.label.localeCompare(b.label)));
 
-  const colSpacing = 105, rowSpacing = 150, marginX = 60, marginY = 50;
+  const colSpacing = 105, marginX = 60, marginY = 50;
   const maxRowCount = Math.max(...Object.values(byDepth).map(a => a.length));
   const width = marginX * 2 + (maxRowCount - 1) * colSpacing + 20;
+
+  const maxDepth = Math.max(...Object.keys(byDepth).map(Number));
+  const rowYs = rowYPositions(maxDepth, marginY);
 
   const pos = {};
   Object.keys(byDepth).sort((a, b) => a - b).forEach(depth => {
@@ -93,12 +111,11 @@ function layoutGraph(data) {
     const rowWidth = (row.length - 1) * colSpacing;
     const startX = (width - rowWidth) / 2;
     row.forEach((n, i) => {
-      pos[n.id] = { x: startX + i * colSpacing, y: marginY + Number(depth) * rowSpacing };
+      pos[n.id] = { x: startX + i * colSpacing, y: rowYs[Number(depth)] };
     });
   });
 
-  const maxDepth = Math.max(...Object.keys(byDepth).map(Number));
-  const height = marginY * 2 + maxDepth * rowSpacing + 20;
+  const height = rowYs[maxDepth] + marginY + 20;
   return { pos, width, height };
 }
 
@@ -123,7 +140,8 @@ function renderGraph(data) {
     const nx = dx / len, ny = dy / len, r = 14;
     const x1 = p1.x + nx * r, y1 = p1.y + ny * r;
     const x2 = p2.x - nx * r, y2 = p2.y - ny * r;
-    svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}"
+    svg += `<line class="edge-line" data-source="${e.source}" data-target="${e.target}"
+             x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}"
              stroke-width="${width_px}" opacity="0.75" marker-end="url(#arrow)" />`;
   });
 
@@ -143,10 +161,32 @@ function renderGraph(data) {
 
   container.querySelectorAll(".node-g").forEach(g => {
     g.addEventListener("click", () => {
+      const selectedId = g.dataset.id;
       container.querySelectorAll(".node-circle").forEach(c => c.classList.remove("selected"));
       g.querySelector(".node-circle").classList.add("selected");
-      renderInfoPanel(nodeById[g.dataset.id]);
+      renderInfoPanel(nodeById[selectedId]);
+
+      const connected = new Set(
+        data.edges.filter(e => e.source === selectedId || e.target === selectedId)
+                  .flatMap(e => [e.source, e.target])
+      );
+      connected.add(selectedId);
+
+      container.querySelectorAll(".edge-line").forEach(line => {
+        const isConnected = line.dataset.source === selectedId || line.dataset.target === selectedId;
+        line.style.opacity = isConnected ? "0.95" : "0.06";
+      });
+      container.querySelectorAll(".node-g").forEach(ng => {
+        ng.style.opacity = connected.has(ng.dataset.id) ? "1" : "0.25";
+      });
     });
+  });
+
+  container.addEventListener("dblclick", (e) => {
+    if (e.target.closest(".node-g")) return;
+    container.querySelectorAll(".edge-line").forEach(l => l.style.opacity = "0.75");
+    container.querySelectorAll(".node-g").forEach(ng => ng.style.opacity = "1");
+    container.querySelectorAll(".node-circle").forEach(c => c.classList.remove("selected"));
   });
 }
 
