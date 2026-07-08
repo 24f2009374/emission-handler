@@ -95,6 +95,48 @@
   }
 
   #status { color: var(--muted); font-size: 13px; }
+
+  .layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.graph-panel {
+  flex: 0 0 380px;
+  position: sticky;
+  top: 32px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.graph-panel h2 { margin-top: 0; font-size: 14px; color: var(--muted); font-weight: 500; }
+.output-col { flex: 1; min-width: 0; }
+
+.node-circle { stroke: var(--border); stroke-width: 1.5; }
+.node-label { fill: var(--text); font-size: 11px; font-family: inherit; }
+.edge-line { stroke-width: 2.5; fill: none; }
+.marker-label { font-size: 9px; font-weight: 700; }
+
+.legend {
+  margin-top: 14px;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+.legend span.sym {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #0d1117;
+  border: 1.5px solid var(--neutral);
+  text-align: center;
+  line-height: 14px;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--neutral);
+  margin-right: 6px;
+}
 </style>
 </head>
 <body>
@@ -102,10 +144,29 @@
 <h1>Emission Handler — Deterministic Demo</h1>
 <p class="sub">Checkpoint handshake state machine. Each scenario below is a fixed, reproducible test case.</p>
 
+<p><a href="/explorer.html" style="color:var(--neutral); text-decoration:none;">&rarr; View the full supply chain network (data explorer)</a></p>
+
 <div id="scenario-buttons" class="scenarios"></div>
 <div id="status">Loading scenarios…</div>
 
-<div id="output"></div>
+<div class="layout">
+  <div class="graph-panel">
+    <h2>Graph View</h2>
+    <div id="graph-svg-container"></div>
+    <div class="legend">
+      <div><span class="sym">D</span>dispatched</div>
+      <div><span class="sym">W</span>acknowledged / waiting</div>
+      <div><span class="sym">✓</span>arrived on time</div>
+      <div><span class="sym">✕</span>delayed</div>
+      <div><span class="sym">?</span>silence</div>
+      <div><span class="sym">!</span>conflict</div>
+      <div><span class="sym">T</span>context adjustment</div>
+    </div>
+  </div>
+  <div class="output-col">
+    <div id="output"></div>
+  </div>
+</div>
 
 <script>
 const API = "/api/simulate";
@@ -140,6 +201,121 @@ async function runScenario(id, btnEl) {
   render(data);
 }
 
+function buildLayout(edges) {
+  const nodeSet = new Set();
+  const incoming = {};
+  const outgoing = {};
+  edges.forEach(e => {
+    nodeSet.add(e.source);
+    nodeSet.add(e.target);
+    (outgoing[e.source] = outgoing[e.source] || []).push(e);
+    (incoming[e.target] = incoming[e.target] || []).push(e);
+  });
+
+  const roots = [...nodeSet].filter(n => !incoming[n]);
+  const layer = {};
+  const queue = roots.map(r => [r, 0]);
+  while (queue.length) {
+    const [node, d] = queue.shift();
+    if (layer[node] === undefined || d > layer[node]) {
+      layer[node] = d;
+      (outgoing[node] || []).forEach(e => queue.push([e.target, d + 1]));
+    }
+  }
+  [...nodeSet].forEach(n => { if (layer[n] === undefined) layer[n] = 0; });
+
+  const byLayer = {};
+  [...nodeSet].forEach(n => {
+    const l = layer[n];
+    (byLayer[l] = byLayer[l] || []).push(n);
+  });
+
+  const colSpacing = 130, rowSpacing = 70, marginX = 40, marginY = 40;
+  const pos = {};
+  Object.keys(byLayer).sort((a, b) => a - b).forEach(l => {
+    byLayer[l].forEach((n, i) => {
+      pos[n] = { x: marginX + Number(l) * colSpacing, y: marginY + i * rowSpacing };
+    });
+  });
+
+  const maxLayer = Math.max(...Object.keys(byLayer).map(Number));
+  const maxRows = Math.max(...Object.values(byLayer).map(a => a.length));
+
+  return {
+    pos,
+    width: marginX * 2 + maxLayer * colSpacing + 20,
+    height: marginY * 2 + (maxRows - 1) * rowSpacing + 20,
+    incoming,
+  };
+}
+
+const MARKER_SYMBOL = {
+  dispatched: "D", ack_waiting: "W", arrived: "✓",
+  delayed: "✕", silence: "?", conflict: "!", context_adjust: "T",
+};
+
+function nodeColor(node, incoming) {
+  const inEdges = incoming[node];
+  if (!inEdges || !inEdges.length) return "var(--neutral)";
+  const priority = { delayed: 4, conflicted: 4, unknown: 3, on_time: 1,
+                      in_transit: 2, ack_waiting: 2, pending: 2 };
+  let worst = null, worstScore = -1;
+  inEdges.forEach(e => {
+    const score = priority[e.state] ?? 0;
+    if (score > worstScore) { worstScore = score; worst = e.state; }
+  });
+  return `var(--${worst})`;
+}
+
+function renderGraph(data) {
+  const { pos, width, height, incoming } = buildLayout(data.edges);
+
+  let svg = `<svg viewBox="0 0 ${width} ${height}" width="100%" height="${height}">
+    <defs>
+      <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6 Z" fill="var(--muted)" />
+      </marker>
+    </defs>`;
+
+  data.edges.forEach(e => {
+    const p1 = pos[e.source], p2 = pos[e.target];
+    if (!p1 || !p2) return;
+    const stateColor = `var(--${e.state})`;
+    const dx = p2.x - p1.x, dy = p2.y - p1.y;
+    const len = Math.sqrt(dx * dx + dy * dy) || 1;
+    const nx = dx / len, ny = dy / len, r = 16;
+    const x1 = p1.x + nx * r, y1 = p1.y + ny * r;
+    const x2 = p2.x - nx * r, y2 = p2.y - ny * r;
+
+    svg += `<line class="edge-line" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"
+             stroke="${stateColor}" marker-end="url(#arrow)" />`;
+
+    const emissions = data.log.filter(l => l.edge_id === e.id);
+    emissions.forEach((em, i) => {
+      const t = (i + 1) / (emissions.length + 1);
+      const mx = x1 + (x2 - x1) * t;
+      const my = y1 + (y2 - y1) * t;
+      const sym = MARKER_SYMBOL[em.type] || "•";
+      svg += `
+        <circle cx="${mx}" cy="${my}" r="8" fill="#0d1117" stroke="${stateColor}" stroke-width="1.5" />
+        <text x="${mx}" y="${my + 3}" text-anchor="middle" class="marker-label" fill="${stateColor}">${sym}</text>
+      `;
+    });
+  });
+
+  Object.keys(pos).forEach(node => {
+    const p = pos[node];
+    const color = nodeColor(node, incoming);
+    svg += `
+      <circle class="node-circle" cx="${p.x}" cy="${p.y}" r="16" fill="${color}" />
+      <text class="node-label" x="${p.x}" y="${p.y + 30}" text-anchor="middle">${node}</text>
+    `;
+  });
+
+  svg += `</svg>`;
+  document.getElementById("graph-svg-container").innerHTML = svg;
+}
+  
 function render(data) {
   const edgeRows = data.edges.map(e => `
     <tr>
@@ -174,6 +350,7 @@ function render(data) {
       ${logRows}
     </div>
   `;
+  renderGraph(data);
 }
 
 loadScenarioList();

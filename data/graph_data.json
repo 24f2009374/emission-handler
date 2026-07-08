@@ -1,0 +1,2815 @@
+{
+  "nodes": [
+    {
+      "id": "vendor:1",
+      "type": "vendor",
+      "label": "Vendor-001",
+      "depth": 0,
+      "info": {
+        "category": "Plumbing",
+        "orders_count": 63,
+        "observed_on_time_rate_pct": 70.1,
+        "sample_orders": [
+          {
+            "order_id": 10,
+            "material_type": "HVAC Ductwork",
+            "quantity": 340,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 21,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 1757,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 40,
+            "material_type": "Electrical Conduit",
+            "quantity": 1463,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 47,
+            "material_type": "Drywall",
+            "quantity": 333,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 103,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 1347,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 111,
+            "material_type": "Roofing Membrane",
+            "quantity": 159,
+            "final_status": "silence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:2",
+      "type": "vendor",
+      "label": "Vendor-002",
+      "depth": 0,
+      "info": {
+        "category": "Steel",
+        "orders_count": 38,
+        "observed_on_time_rate_pct": 51.6,
+        "sample_orders": [
+          {
+            "order_id": 24,
+            "material_type": "Rebar",
+            "quantity": 1609,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 37,
+            "material_type": "Drywall",
+            "quantity": 1344,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 46,
+            "material_type": "Curtain Wall Glass",
+            "quantity": 892,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 70,
+            "material_type": "Curtain Wall Glass",
+            "quantity": 1472,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 118,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 1151,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 123,
+            "material_type": "Precast Concrete",
+            "quantity": 1735,
+            "final_status": "conflict"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:3",
+      "type": "vendor",
+      "label": "Vendor-003",
+      "depth": 0,
+      "info": {
+        "category": "Concrete",
+        "orders_count": 36,
+        "observed_on_time_rate_pct": 52.0,
+        "sample_orders": [
+          {
+            "order_id": 1,
+            "material_type": "Roofing Membrane",
+            "quantity": 1144,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 65,
+            "material_type": "Structural Steel",
+            "quantity": 903,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 84,
+            "material_type": "Precast Concrete",
+            "quantity": 1127,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 96,
+            "material_type": "Insulation",
+            "quantity": 1575,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 115,
+            "material_type": "Structural Steel",
+            "quantity": 924,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 155,
+            "material_type": "Curtain Wall Glass",
+            "quantity": 1922,
+            "final_status": "silence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:4",
+      "type": "vendor",
+      "label": "Vendor-004",
+      "depth": 0,
+      "info": {
+        "category": "Electrical",
+        "orders_count": 40,
+        "observed_on_time_rate_pct": 72.3,
+        "sample_orders": [
+          {
+            "order_id": 9,
+            "material_type": "Drywall",
+            "quantity": 328,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 15,
+            "material_type": "Drywall",
+            "quantity": 643,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 53,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 1933,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 128,
+            "material_type": "Rebar",
+            "quantity": 707,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 140,
+            "material_type": "Rebar",
+            "quantity": 1396,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 146,
+            "material_type": "Electrical Conduit",
+            "quantity": 619,
+            "final_status": "on_time"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:5",
+      "type": "vendor",
+      "label": "Vendor-005",
+      "depth": 0,
+      "info": {
+        "category": "General Fabrication",
+        "orders_count": 36,
+        "observed_on_time_rate_pct": 75.6,
+        "sample_orders": [
+          {
+            "order_id": 44,
+            "material_type": "Precast Concrete",
+            "quantity": 1038,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 74,
+            "material_type": "Roofing Membrane",
+            "quantity": 1666,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 78,
+            "material_type": "Insulation",
+            "quantity": 1270,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 89,
+            "material_type": "Rebar",
+            "quantity": 643,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 130,
+            "material_type": "Curtain Wall Glass",
+            "quantity": 748,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 152,
+            "material_type": "Electrical Conduit",
+            "quantity": 794,
+            "final_status": "delayed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:6",
+      "type": "vendor",
+      "label": "Vendor-006",
+      "depth": 0,
+      "info": {
+        "category": "Glazing",
+        "orders_count": 42,
+        "observed_on_time_rate_pct": 69.9,
+        "sample_orders": [
+          {
+            "order_id": 4,
+            "material_type": "Insulation",
+            "quantity": 447,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 6,
+            "material_type": "Rebar",
+            "quantity": 1753,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 12,
+            "material_type": "Precast Concrete",
+            "quantity": 1518,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 67,
+            "material_type": "Rebar",
+            "quantity": 1096,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 73,
+            "material_type": "Insulation",
+            "quantity": 403,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 90,
+            "material_type": "Drywall",
+            "quantity": 1875,
+            "final_status": "conflict"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:7",
+      "type": "vendor",
+      "label": "Vendor-007",
+      "depth": 0,
+      "info": {
+        "category": "HVAC",
+        "orders_count": 40,
+        "observed_on_time_rate_pct": 57.9,
+        "sample_orders": [
+          {
+            "order_id": 3,
+            "material_type": "Insulation",
+            "quantity": 297,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 31,
+            "material_type": "HVAC Ductwork",
+            "quantity": 1493,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 34,
+            "material_type": "HVAC Ductwork",
+            "quantity": 1362,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 54,
+            "material_type": "Roofing Membrane",
+            "quantity": 1998,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 55,
+            "material_type": "Electrical Conduit",
+            "quantity": 682,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 59,
+            "material_type": "Electrical Conduit",
+            "quantity": 857,
+            "final_status": "delayed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:8",
+      "type": "vendor",
+      "label": "Vendor-008",
+      "depth": 0,
+      "info": {
+        "category": "Electrical",
+        "orders_count": 39,
+        "observed_on_time_rate_pct": 63.8,
+        "sample_orders": [
+          {
+            "order_id": 7,
+            "material_type": "Precast Concrete",
+            "quantity": 1385,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 41,
+            "material_type": "Precast Concrete",
+            "quantity": 795,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 43,
+            "material_type": "Electrical Conduit",
+            "quantity": 1763,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 52,
+            "material_type": "Insulation",
+            "quantity": 1872,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 56,
+            "material_type": "Structural Steel",
+            "quantity": 366,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 91,
+            "material_type": "HVAC Ductwork",
+            "quantity": 1742,
+            "final_status": "silence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:9",
+      "type": "vendor",
+      "label": "Vendor-009",
+      "depth": 0,
+      "info": {
+        "category": "Electrical",
+        "orders_count": 32,
+        "observed_on_time_rate_pct": 77.1,
+        "sample_orders": [
+          {
+            "order_id": 13,
+            "material_type": "Curtain Wall Glass",
+            "quantity": 1323,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 119,
+            "material_type": "Roofing Membrane",
+            "quantity": 1244,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 121,
+            "material_type": "Insulation",
+            "quantity": 964,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 122,
+            "material_type": "Insulation",
+            "quantity": 953,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 154,
+            "material_type": "Electrical Conduit",
+            "quantity": 1143,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 205,
+            "material_type": "Rebar",
+            "quantity": 1675,
+            "final_status": "delayed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:10",
+      "type": "vendor",
+      "label": "Vendor-010",
+      "depth": 0,
+      "info": {
+        "category": "Concrete",
+        "orders_count": 44,
+        "observed_on_time_rate_pct": 69.9,
+        "sample_orders": [
+          {
+            "order_id": 16,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 1619,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 26,
+            "material_type": "Rebar",
+            "quantity": 1640,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 48,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 572,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 69,
+            "material_type": "Structural Steel",
+            "quantity": 730,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 79,
+            "material_type": "Rebar",
+            "quantity": 107,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 80,
+            "material_type": "Roofing Membrane",
+            "quantity": 732,
+            "final_status": "delayed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:11",
+      "type": "vendor",
+      "label": "Vendor-011",
+      "depth": 0,
+      "info": {
+        "category": "Plumbing",
+        "orders_count": 40,
+        "observed_on_time_rate_pct": 75.8,
+        "sample_orders": [
+          {
+            "order_id": 23,
+            "material_type": "Curtain Wall Glass",
+            "quantity": 701,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 30,
+            "material_type": "Insulation",
+            "quantity": 564,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 38,
+            "material_type": "Precast Concrete",
+            "quantity": 685,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 58,
+            "material_type": "Rebar",
+            "quantity": 268,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 94,
+            "material_type": "Curtain Wall Glass",
+            "quantity": 398,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 107,
+            "material_type": "Roofing Membrane",
+            "quantity": 33,
+            "final_status": "on_time"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:12",
+      "type": "vendor",
+      "label": "Vendor-012",
+      "depth": 0,
+      "info": {
+        "category": "HVAC",
+        "orders_count": 34,
+        "observed_on_time_rate_pct": 57.3,
+        "sample_orders": [
+          {
+            "order_id": 11,
+            "material_type": "Precast Concrete",
+            "quantity": 890,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 14,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 1251,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 39,
+            "material_type": "Insulation",
+            "quantity": 1566,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 50,
+            "material_type": "HVAC Ductwork",
+            "quantity": 1710,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 62,
+            "material_type": "Precast Concrete",
+            "quantity": 1169,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 66,
+            "material_type": "Rebar",
+            "quantity": 508,
+            "final_status": "silence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:13",
+      "type": "vendor",
+      "label": "Vendor-013",
+      "depth": 0,
+      "info": {
+        "category": "Plumbing",
+        "orders_count": 37,
+        "observed_on_time_rate_pct": 70.1,
+        "sample_orders": [
+          {
+            "order_id": 20,
+            "material_type": "Electrical Conduit",
+            "quantity": 141,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 22,
+            "material_type": "Insulation",
+            "quantity": 1893,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 36,
+            "material_type": "Drywall",
+            "quantity": 1021,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 51,
+            "material_type": "Drywall",
+            "quantity": 263,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 72,
+            "material_type": "Rebar",
+            "quantity": 644,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 85,
+            "material_type": "Precast Concrete",
+            "quantity": 1961,
+            "final_status": "conflict"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:14",
+      "type": "vendor",
+      "label": "Vendor-014",
+      "depth": 0,
+      "info": {
+        "category": "General Fabrication",
+        "orders_count": 34,
+        "observed_on_time_rate_pct": 78.7,
+        "sample_orders": [
+          {
+            "order_id": 2,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 966,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 83,
+            "material_type": "Insulation",
+            "quantity": 1842,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 131,
+            "material_type": "Drywall",
+            "quantity": 1059,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 133,
+            "material_type": "Rebar",
+            "quantity": 749,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 156,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 178,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 188,
+            "material_type": "Rebar",
+            "quantity": 394,
+            "final_status": "on_time"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:15",
+      "type": "vendor",
+      "label": "Vendor-015",
+      "depth": 0,
+      "info": {
+        "category": "Plumbing",
+        "orders_count": 41,
+        "observed_on_time_rate_pct": 72.0,
+        "sample_orders": [
+          {
+            "order_id": 110,
+            "material_type": "Precast Concrete",
+            "quantity": 1061,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 125,
+            "material_type": "Electrical Conduit",
+            "quantity": 624,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 165,
+            "material_type": "HVAC Ductwork",
+            "quantity": 1755,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 182,
+            "material_type": "Insulation",
+            "quantity": 962,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 196,
+            "material_type": "Structural Steel",
+            "quantity": 1784,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 226,
+            "material_type": "Structural Steel",
+            "quantity": 980,
+            "final_status": "on_time"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:16",
+      "type": "vendor",
+      "label": "Vendor-016",
+      "depth": 0,
+      "info": {
+        "category": "HVAC",
+        "orders_count": 57,
+        "observed_on_time_rate_pct": 70.7,
+        "sample_orders": [
+          {
+            "order_id": 19,
+            "material_type": "Electrical Conduit",
+            "quantity": 1730,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 25,
+            "material_type": "Roofing Membrane",
+            "quantity": 1951,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 33,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 1017,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 76,
+            "material_type": "Rebar",
+            "quantity": 1466,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 98,
+            "material_type": "Roofing Membrane",
+            "quantity": 1192,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 108,
+            "material_type": "Roofing Membrane",
+            "quantity": 775,
+            "final_status": "on_time"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:17",
+      "type": "vendor",
+      "label": "Vendor-017",
+      "depth": 0,
+      "info": {
+        "category": "Plumbing",
+        "orders_count": 27,
+        "observed_on_time_rate_pct": 58.6,
+        "sample_orders": [
+          {
+            "order_id": 18,
+            "material_type": "Drywall",
+            "quantity": 520,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 57,
+            "material_type": "Structural Steel",
+            "quantity": 134,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 95,
+            "material_type": "Electrical Conduit",
+            "quantity": 1204,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 105,
+            "material_type": "Drywall",
+            "quantity": 968,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 109,
+            "material_type": "Curtain Wall Glass",
+            "quantity": 169,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 124,
+            "material_type": "Drywall",
+            "quantity": 597,
+            "final_status": "delayed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:18",
+      "type": "vendor",
+      "label": "Vendor-018",
+      "depth": 0,
+      "info": {
+        "category": "Concrete",
+        "orders_count": 37,
+        "observed_on_time_rate_pct": 71.3,
+        "sample_orders": [
+          {
+            "order_id": 5,
+            "material_type": "Insulation",
+            "quantity": 327,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 8,
+            "material_type": "HVAC Ductwork",
+            "quantity": 281,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 29,
+            "material_type": "Electrical Conduit",
+            "quantity": 185,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 32,
+            "material_type": "Precast Concrete",
+            "quantity": 1316,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 45,
+            "material_type": "Rebar",
+            "quantity": 490,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 60,
+            "material_type": "Rebar",
+            "quantity": 851,
+            "final_status": "silence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:19",
+      "type": "vendor",
+      "label": "Vendor-019",
+      "depth": 0,
+      "info": {
+        "category": "Plumbing",
+        "orders_count": 36,
+        "observed_on_time_rate_pct": 83.2,
+        "sample_orders": [
+          {
+            "order_id": 28,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 698,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 35,
+            "material_type": "Plumbing Fixtures",
+            "quantity": 245,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 42,
+            "material_type": "Insulation",
+            "quantity": 1782,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 68,
+            "material_type": "Roofing Membrane",
+            "quantity": 1326,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 75,
+            "material_type": "HVAC Ductwork",
+            "quantity": 1603,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 81,
+            "material_type": "Precast Concrete",
+            "quantity": 100,
+            "final_status": "delayed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vendor:20",
+      "type": "vendor",
+      "label": "Vendor-020",
+      "depth": 0,
+      "info": {
+        "category": "Glazing",
+        "orders_count": 47,
+        "observed_on_time_rate_pct": 58.6,
+        "sample_orders": [
+          {
+            "order_id": 17,
+            "material_type": "Electrical Conduit",
+            "quantity": 1387,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 27,
+            "material_type": "Insulation",
+            "quantity": 902,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 49,
+            "material_type": "Precast Concrete",
+            "quantity": 1296,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 63,
+            "material_type": "Precast Concrete",
+            "quantity": 332,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 87,
+            "material_type": "Insulation",
+            "quantity": 419,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 92,
+            "material_type": "Curtain Wall Glass",
+            "quantity": 1735,
+            "final_status": "delayed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "project:1",
+      "type": "project",
+      "label": "Project-01",
+      "depth": 7,
+      "info": {
+        "orders_count": 140,
+        "sample_orders": [
+          {
+            "order_id": 6,
+            "material_type": "Rebar",
+            "vendor_id": 6,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 9,
+            "material_type": "Drywall",
+            "vendor_id": 4,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 13,
+            "material_type": "Curtain Wall Glass",
+            "vendor_id": 9,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 29,
+            "material_type": "Electrical Conduit",
+            "vendor_id": 18,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 33,
+            "material_type": "Plumbing Fixtures",
+            "vendor_id": 16,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 45,
+            "material_type": "Rebar",
+            "vendor_id": 18,
+            "final_status": "silence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "project:2",
+      "type": "project",
+      "label": "Project-02",
+      "depth": 7,
+      "info": {
+        "orders_count": 118,
+        "sample_orders": [
+          {
+            "order_id": 3,
+            "material_type": "Insulation",
+            "vendor_id": 7,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 8,
+            "material_type": "HVAC Ductwork",
+            "vendor_id": 18,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 23,
+            "material_type": "Curtain Wall Glass",
+            "vendor_id": 11,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 37,
+            "material_type": "Drywall",
+            "vendor_id": 2,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 72,
+            "material_type": "Rebar",
+            "vendor_id": 13,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 73,
+            "material_type": "Insulation",
+            "vendor_id": 6,
+            "final_status": "silence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "project:3",
+      "type": "project",
+      "label": "Project-03",
+      "depth": 7,
+      "info": {
+        "orders_count": 136,
+        "sample_orders": [
+          {
+            "order_id": 1,
+            "material_type": "Roofing Membrane",
+            "vendor_id": 3,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 2,
+            "material_type": "Plumbing Fixtures",
+            "vendor_id": 14,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 7,
+            "material_type": "Precast Concrete",
+            "vendor_id": 8,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 10,
+            "material_type": "HVAC Ductwork",
+            "vendor_id": 1,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 16,
+            "material_type": "Plumbing Fixtures",
+            "vendor_id": 10,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 17,
+            "material_type": "Electrical Conduit",
+            "vendor_id": 20,
+            "final_status": "silence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "project:4",
+      "type": "project",
+      "label": "Project-04",
+      "depth": 7,
+      "info": {
+        "orders_count": 130,
+        "sample_orders": [
+          {
+            "order_id": 4,
+            "material_type": "Insulation",
+            "vendor_id": 6,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 12,
+            "material_type": "Precast Concrete",
+            "vendor_id": 6,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 18,
+            "material_type": "Drywall",
+            "vendor_id": 17,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 19,
+            "material_type": "Electrical Conduit",
+            "vendor_id": 16,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 41,
+            "material_type": "Precast Concrete",
+            "vendor_id": 8,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 44,
+            "material_type": "Precast Concrete",
+            "vendor_id": 5,
+            "final_status": "silence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "project:5",
+      "type": "project",
+      "label": "Project-05",
+      "depth": 7,
+      "info": {
+        "orders_count": 132,
+        "sample_orders": [
+          {
+            "order_id": 11,
+            "material_type": "Precast Concrete",
+            "vendor_id": 12,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 27,
+            "material_type": "Insulation",
+            "vendor_id": 20,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 28,
+            "material_type": "Plumbing Fixtures",
+            "vendor_id": 19,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 39,
+            "material_type": "Insulation",
+            "vendor_id": 12,
+            "final_status": "conflict"
+          },
+          {
+            "order_id": 42,
+            "material_type": "Insulation",
+            "vendor_id": 19,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 43,
+            "material_type": "Electrical Conduit",
+            "vendor_id": 8,
+            "final_status": "on_time"
+          }
+        ]
+      }
+    },
+    {
+      "id": "project:6",
+      "type": "project",
+      "label": "Project-06",
+      "depth": 7,
+      "info": {
+        "orders_count": 144,
+        "sample_orders": [
+          {
+            "order_id": 5,
+            "material_type": "Insulation",
+            "vendor_id": 18,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 14,
+            "material_type": "Plumbing Fixtures",
+            "vendor_id": 12,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 15,
+            "material_type": "Drywall",
+            "vendor_id": 4,
+            "final_status": "on_time"
+          },
+          {
+            "order_id": 20,
+            "material_type": "Electrical Conduit",
+            "vendor_id": 13,
+            "final_status": "delayed"
+          },
+          {
+            "order_id": 22,
+            "material_type": "Insulation",
+            "vendor_id": 13,
+            "final_status": "silence"
+          },
+          {
+            "order_id": 25,
+            "material_type": "Roofing Membrane",
+            "vendor_id": 16,
+            "final_status": "delayed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:1:0:OverseasFactory",
+      "type": "checkpoint",
+      "label": "OverseasFactory",
+      "depth": 1,
+      "info": {
+        "route_id": 1,
+        "seq_index": 0,
+        "role": "OverseasFactory",
+        "legs_through": 130,
+        "state_breakdown": {
+          "silence": 15,
+          "on_time": 78,
+          "conflict": 6,
+          "delayed": 31
+        },
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:1:1:Port",
+      "type": "checkpoint",
+      "label": "Port",
+      "depth": 2,
+      "info": {
+        "route_id": 1,
+        "seq_index": 1,
+        "role": "Port",
+        "legs_through": 130,
+        "state_breakdown": {
+          "delayed": 38,
+          "on_time": 75,
+          "silence": 13,
+          "conflict": 4
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Scheduled maintenance window",
+            "start_date": "2026-02-05",
+            "end_date": "2026-02-07",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:1:2:Customs",
+      "type": "checkpoint",
+      "label": "Customs",
+      "depth": 3,
+      "info": {
+        "route_id": 1,
+        "seq_index": 2,
+        "role": "Customs",
+        "legs_through": 130,
+        "state_breakdown": {
+          "delayed": 40,
+          "on_time": 70,
+          "silence": 12,
+          "conflict": 8
+        },
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:1:3:Port2",
+      "type": "checkpoint",
+      "label": "Port2",
+      "depth": 4,
+      "info": {
+        "route_id": 1,
+        "seq_index": 3,
+        "role": "Port2",
+        "legs_through": 130,
+        "state_breakdown": {
+          "on_time": 81,
+          "delayed": 25,
+          "silence": 15,
+          "conflict": 9
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Port congestion surge",
+            "start_date": "2025-12-18",
+            "end_date": "2025-12-23",
+            "pre_announced": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:1:4:RegionalWarehouse",
+      "type": "checkpoint",
+      "label": "RegionalWarehouse",
+      "depth": 5,
+      "info": {
+        "route_id": 1,
+        "seq_index": 4,
+        "role": "RegionalWarehouse",
+        "legs_through": 130,
+        "state_breakdown": {
+          "silence": 9,
+          "on_time": 81,
+          "delayed": 32,
+          "conflict": 8
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Public holiday closure",
+            "start_date": "2026-05-30",
+            "end_date": "2026-05-31",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:1:5:Site",
+      "type": "checkpoint",
+      "label": "Site",
+      "depth": 6,
+      "info": {
+        "route_id": 1,
+        "seq_index": 5,
+        "role": "Site",
+        "legs_through": 0,
+        "state_breakdown": {},
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:2:0:Factory",
+      "type": "checkpoint",
+      "label": "Factory",
+      "depth": 1,
+      "info": {
+        "route_id": 2,
+        "seq_index": 0,
+        "role": "Factory",
+        "legs_through": 124,
+        "state_breakdown": {
+          "silence": 16,
+          "on_time": 72,
+          "delayed": 26,
+          "conflict": 10
+        },
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:2:1:Port",
+      "type": "checkpoint",
+      "label": "Port",
+      "depth": 2,
+      "info": {
+        "route_id": 2,
+        "seq_index": 1,
+        "role": "Port",
+        "legs_through": 124,
+        "state_breakdown": {
+          "silence": 16,
+          "on_time": 70,
+          "delayed": 30,
+          "conflict": 8
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Scheduled maintenance window",
+            "start_date": "2026-02-05",
+            "end_date": "2026-02-07",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:2:2:RegionalWarehouse",
+      "type": "checkpoint",
+      "label": "RegionalWarehouse",
+      "depth": 3,
+      "info": {
+        "route_id": 2,
+        "seq_index": 2,
+        "role": "RegionalWarehouse",
+        "legs_through": 124,
+        "state_breakdown": {
+          "on_time": 78,
+          "delayed": 26,
+          "conflict": 8,
+          "silence": 12
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Public holiday closure",
+            "start_date": "2026-05-30",
+            "end_date": "2026-05-31",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:2:3:Site",
+      "type": "checkpoint",
+      "label": "Site",
+      "depth": 4,
+      "info": {
+        "route_id": 2,
+        "seq_index": 3,
+        "role": "Site",
+        "legs_through": 0,
+        "state_breakdown": {},
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:3:0:Fabricator",
+      "type": "checkpoint",
+      "label": "Fabricator",
+      "depth": 1,
+      "info": {
+        "route_id": 3,
+        "seq_index": 0,
+        "role": "Fabricator",
+        "legs_through": 114,
+        "state_breakdown": {
+          "conflict": 7,
+          "delayed": 31,
+          "on_time": 68,
+          "silence": 8
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Scheduled maintenance window",
+            "start_date": "2026-05-02",
+            "end_date": "2026-05-07",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:3:1:QAInspection",
+      "type": "checkpoint",
+      "label": "QAInspection",
+      "depth": 2,
+      "info": {
+        "route_id": 3,
+        "seq_index": 1,
+        "role": "QAInspection",
+        "legs_through": 114,
+        "state_breakdown": {
+          "delayed": 27,
+          "on_time": 71,
+          "silence": 10,
+          "conflict": 6
+        },
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:3:2:RegionalWarehouse",
+      "type": "checkpoint",
+      "label": "RegionalWarehouse",
+      "depth": 3,
+      "info": {
+        "route_id": 3,
+        "seq_index": 2,
+        "role": "RegionalWarehouse",
+        "legs_through": 114,
+        "state_breakdown": {
+          "silence": 14,
+          "delayed": 36,
+          "on_time": 57,
+          "conflict": 7
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Public holiday closure",
+            "start_date": "2026-05-30",
+            "end_date": "2026-05-31",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:3:3:Site",
+      "type": "checkpoint",
+      "label": "Site",
+      "depth": 4,
+      "info": {
+        "route_id": 3,
+        "seq_index": 3,
+        "role": "Site",
+        "legs_through": 0,
+        "state_breakdown": {},
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:4:0:Fabricator",
+      "type": "checkpoint",
+      "label": "Fabricator",
+      "depth": 1,
+      "info": {
+        "route_id": 4,
+        "seq_index": 0,
+        "role": "Fabricator",
+        "legs_through": 141,
+        "state_breakdown": {
+          "on_time": 81,
+          "delayed": 34,
+          "conflict": 8,
+          "silence": 18
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Scheduled maintenance window",
+            "start_date": "2026-05-02",
+            "end_date": "2026-05-07",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:4:1:DistributionHub",
+      "type": "checkpoint",
+      "label": "DistributionHub",
+      "depth": 2,
+      "info": {
+        "route_id": 4,
+        "seq_index": 1,
+        "role": "DistributionHub",
+        "legs_through": 141,
+        "state_breakdown": {
+          "on_time": 82,
+          "delayed": 41,
+          "silence": 10,
+          "conflict": 8
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Scheduled maintenance window",
+            "start_date": "2026-01-29",
+            "end_date": "2026-02-02",
+            "pre_announced": true
+          },
+          {
+            "reason": "Severe weather",
+            "start_date": "2025-10-14",
+            "end_date": "2025-10-18",
+            "pre_announced": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:4:2:SiteB",
+      "type": "checkpoint",
+      "label": "SiteB",
+      "depth": 3,
+      "info": {
+        "route_id": 4,
+        "seq_index": 2,
+        "role": "SiteB",
+        "legs_through": 0,
+        "state_breakdown": {},
+        "context_events_for_this_role": [
+          {
+            "reason": "Equipment breakdown",
+            "start_date": "2025-10-29",
+            "end_date": "2025-11-03",
+            "pre_announced": false
+          },
+          {
+            "reason": "Unplanned strike",
+            "start_date": "2026-01-13",
+            "end_date": "2026-01-18",
+            "pre_announced": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:5:0:Factory",
+      "type": "checkpoint",
+      "label": "Factory",
+      "depth": 1,
+      "info": {
+        "route_id": 5,
+        "seq_index": 0,
+        "role": "Factory",
+        "legs_through": 150,
+        "state_breakdown": {
+          "on_time": 88,
+          "delayed": 40,
+          "conflict": 10,
+          "silence": 12
+        },
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:5:1:Port",
+      "type": "checkpoint",
+      "label": "Port",
+      "depth": 2,
+      "info": {
+        "route_id": 5,
+        "seq_index": 1,
+        "role": "Port",
+        "legs_through": 150,
+        "state_breakdown": {
+          "on_time": 72,
+          "delayed": 48,
+          "silence": 16,
+          "conflict": 14
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Scheduled maintenance window",
+            "start_date": "2026-02-05",
+            "end_date": "2026-02-07",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:5:2:Customs",
+      "type": "checkpoint",
+      "label": "Customs",
+      "depth": 3,
+      "info": {
+        "route_id": 5,
+        "seq_index": 2,
+        "role": "Customs",
+        "legs_through": 150,
+        "state_breakdown": {
+          "silence": 13,
+          "on_time": 90,
+          "delayed": 39,
+          "conflict": 8
+        },
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:5:3:RegionalWarehouse",
+      "type": "checkpoint",
+      "label": "RegionalWarehouse",
+      "depth": 4,
+      "info": {
+        "route_id": 5,
+        "seq_index": 3,
+        "role": "RegionalWarehouse",
+        "legs_through": 150,
+        "state_breakdown": {
+          "on_time": 82,
+          "delayed": 45,
+          "silence": 11,
+          "conflict": 12
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Public holiday closure",
+            "start_date": "2026-05-30",
+            "end_date": "2026-05-31",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:5:4:Site",
+      "type": "checkpoint",
+      "label": "Site",
+      "depth": 5,
+      "info": {
+        "route_id": 5,
+        "seq_index": 4,
+        "role": "Site",
+        "legs_through": 0,
+        "state_breakdown": {},
+        "context_events_for_this_role": []
+      }
+    },
+    {
+      "id": "ckpt:6:0:Fabricator",
+      "type": "checkpoint",
+      "label": "Fabricator",
+      "depth": 1,
+      "info": {
+        "route_id": 6,
+        "seq_index": 0,
+        "role": "Fabricator",
+        "legs_through": 141,
+        "state_breakdown": {
+          "on_time": 78,
+          "delayed": 36,
+          "conflict": 10,
+          "silence": 17
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Scheduled maintenance window",
+            "start_date": "2026-05-02",
+            "end_date": "2026-05-07",
+            "pre_announced": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:6:1:DistributionHub",
+      "type": "checkpoint",
+      "label": "DistributionHub",
+      "depth": 2,
+      "info": {
+        "route_id": 6,
+        "seq_index": 1,
+        "role": "DistributionHub",
+        "legs_through": 141,
+        "state_breakdown": {
+          "delayed": 51,
+          "on_time": 66,
+          "silence": 18,
+          "conflict": 6
+        },
+        "context_events_for_this_role": [
+          {
+            "reason": "Scheduled maintenance window",
+            "start_date": "2026-01-29",
+            "end_date": "2026-02-02",
+            "pre_announced": true
+          },
+          {
+            "reason": "Severe weather",
+            "start_date": "2025-10-14",
+            "end_date": "2025-10-18",
+            "pre_announced": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ckpt:6:2:SiteA",
+      "type": "checkpoint",
+      "label": "SiteA",
+      "depth": 3,
+      "info": {
+        "route_id": 6,
+        "seq_index": 2,
+        "role": "SiteA",
+        "legs_through": 0,
+        "state_breakdown": {},
+        "context_events_for_this_role": [
+          {
+            "reason": "Public holiday closure",
+            "start_date": "2026-01-31",
+            "end_date": "2026-02-05",
+            "pre_announced": true
+          },
+          {
+            "reason": "Public holiday closure",
+            "start_date": "2026-03-11",
+            "end_date": "2026-03-15",
+            "pre_announced": true
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "vendor:3",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 8,
+      "delayed": 6,
+      "bad": 1
+    },
+    {
+      "source": "ckpt:1:0:OverseasFactory",
+      "target": "ckpt:1:1:Port",
+      "count": 130,
+      "delayed": 31,
+      "bad": 21
+    },
+    {
+      "source": "ckpt:1:1:Port",
+      "target": "ckpt:1:2:Customs",
+      "count": 130,
+      "delayed": 38,
+      "bad": 17
+    },
+    {
+      "source": "ckpt:1:2:Customs",
+      "target": "ckpt:1:3:Port2",
+      "count": 130,
+      "delayed": 40,
+      "bad": 20
+    },
+    {
+      "source": "ckpt:1:3:Port2",
+      "target": "ckpt:1:4:RegionalWarehouse",
+      "count": 130,
+      "delayed": 25,
+      "bad": 24
+    },
+    {
+      "source": "ckpt:1:4:RegionalWarehouse",
+      "target": "ckpt:1:5:Site",
+      "count": 130,
+      "delayed": 32,
+      "bad": 17
+    },
+    {
+      "source": "vendor:14",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 8,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "ckpt:4:0:Fabricator",
+      "target": "ckpt:4:1:DistributionHub",
+      "count": 141,
+      "delayed": 34,
+      "bad": 26
+    },
+    {
+      "source": "ckpt:4:1:DistributionHub",
+      "target": "ckpt:4:2:SiteB",
+      "count": 141,
+      "delayed": 41,
+      "bad": 18
+    },
+    {
+      "source": "vendor:7",
+      "target": "ckpt:5:0:Factory",
+      "count": 8,
+      "delayed": 1,
+      "bad": 2
+    },
+    {
+      "source": "ckpt:5:0:Factory",
+      "target": "ckpt:5:1:Port",
+      "count": 150,
+      "delayed": 40,
+      "bad": 22
+    },
+    {
+      "source": "ckpt:5:1:Port",
+      "target": "ckpt:5:2:Customs",
+      "count": 150,
+      "delayed": 48,
+      "bad": 30
+    },
+    {
+      "source": "ckpt:5:2:Customs",
+      "target": "ckpt:5:3:RegionalWarehouse",
+      "count": 150,
+      "delayed": 39,
+      "bad": 21
+    },
+    {
+      "source": "ckpt:5:3:RegionalWarehouse",
+      "target": "ckpt:5:4:Site",
+      "count": 150,
+      "delayed": 45,
+      "bad": 23
+    },
+    {
+      "source": "vendor:6",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 9,
+      "delayed": 1,
+      "bad": 3
+    },
+    {
+      "source": "vendor:18",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 8,
+      "delayed": 3,
+      "bad": 1
+    },
+    {
+      "source": "ckpt:6:0:Fabricator",
+      "target": "ckpt:6:1:DistributionHub",
+      "count": 141,
+      "delayed": 36,
+      "bad": 27
+    },
+    {
+      "source": "ckpt:6:1:DistributionHub",
+      "target": "ckpt:6:2:SiteA",
+      "count": 141,
+      "delayed": 51,
+      "bad": 24
+    },
+    {
+      "source": "vendor:6",
+      "target": "ckpt:5:0:Factory",
+      "count": 10,
+      "delayed": 4,
+      "bad": 0
+    },
+    {
+      "source": "vendor:8",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 8,
+      "delayed": 3,
+      "bad": 0
+    },
+    {
+      "source": "vendor:18",
+      "target": "ckpt:5:0:Factory",
+      "count": 8,
+      "delayed": 2,
+      "bad": 2
+    },
+    {
+      "source": "vendor:4",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 8,
+      "delayed": 0,
+      "bad": 2
+    },
+    {
+      "source": "vendor:1",
+      "target": "ckpt:2:0:Factory",
+      "count": 14,
+      "delayed": 0,
+      "bad": 5
+    },
+    {
+      "source": "ckpt:2:0:Factory",
+      "target": "ckpt:2:1:Port",
+      "count": 124,
+      "delayed": 26,
+      "bad": 26
+    },
+    {
+      "source": "ckpt:2:1:Port",
+      "target": "ckpt:2:2:RegionalWarehouse",
+      "count": 124,
+      "delayed": 30,
+      "bad": 24
+    },
+    {
+      "source": "ckpt:2:2:RegionalWarehouse",
+      "target": "ckpt:2:3:Site",
+      "count": 124,
+      "delayed": 26,
+      "bad": 20
+    },
+    {
+      "source": "vendor:12",
+      "target": "ckpt:5:0:Factory",
+      "count": 11,
+      "delayed": 3,
+      "bad": 0
+    },
+    {
+      "source": "vendor:6",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 8,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:9",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 4,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "ckpt:3:0:Fabricator",
+      "target": "ckpt:3:1:QAInspection",
+      "count": 114,
+      "delayed": 31,
+      "bad": 15
+    },
+    {
+      "source": "ckpt:3:1:QAInspection",
+      "target": "ckpt:3:2:RegionalWarehouse",
+      "count": 114,
+      "delayed": 27,
+      "bad": 16
+    },
+    {
+      "source": "ckpt:3:2:RegionalWarehouse",
+      "target": "ckpt:3:3:Site",
+      "count": 114,
+      "delayed": 36,
+      "bad": 21
+    },
+    {
+      "source": "vendor:12",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 5,
+      "delayed": 3,
+      "bad": 1
+    },
+    {
+      "source": "vendor:4",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 5,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:10",
+      "target": "ckpt:2:0:Factory",
+      "count": 3,
+      "delayed": 0,
+      "bad": 0
+    },
+    {
+      "source": "vendor:20",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 10,
+      "delayed": 3,
+      "bad": 5
+    },
+    {
+      "source": "vendor:17",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 4,
+      "delayed": 2,
+      "bad": 2
+    },
+    {
+      "source": "vendor:16",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 14,
+      "delayed": 3,
+      "bad": 3
+    },
+    {
+      "source": "vendor:13",
+      "target": "ckpt:2:0:Factory",
+      "count": 5,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:1",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 9,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:11",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 5,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:2",
+      "target": "ckpt:2:0:Factory",
+      "count": 5,
+      "delayed": 2,
+      "bad": 2
+    },
+    {
+      "source": "vendor:16",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 9,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:10",
+      "target": "ckpt:5:0:Factory",
+      "count": 11,
+      "delayed": 4,
+      "bad": 2
+    },
+    {
+      "source": "vendor:20",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 5,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:19",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 6,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:11",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 10,
+      "delayed": 4,
+      "bad": 1
+    },
+    {
+      "source": "vendor:7",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 9,
+      "delayed": 3,
+      "bad": 3
+    },
+    {
+      "source": "vendor:7",
+      "target": "ckpt:2:0:Factory",
+      "count": 10,
+      "delayed": 3,
+      "bad": 3
+    },
+    {
+      "source": "vendor:19",
+      "target": "ckpt:2:0:Factory",
+      "count": 8,
+      "delayed": 3,
+      "bad": 0
+    },
+    {
+      "source": "vendor:13",
+      "target": "ckpt:5:0:Factory",
+      "count": 10,
+      "delayed": 1,
+      "bad": 2
+    },
+    {
+      "source": "vendor:2",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 12,
+      "delayed": 4,
+      "bad": 4
+    },
+    {
+      "source": "vendor:11",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 5,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:12",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 9,
+      "delayed": 6,
+      "bad": 3
+    },
+    {
+      "source": "vendor:1",
+      "target": "ckpt:5:0:Factory",
+      "count": 9,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:8",
+      "target": "ckpt:5:0:Factory",
+      "count": 11,
+      "delayed": 3,
+      "bad": 1
+    },
+    {
+      "source": "vendor:5",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 4,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:2",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 5,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:10",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 9,
+      "delayed": 3,
+      "bad": 1
+    },
+    {
+      "source": "vendor:20",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 7,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:13",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 5,
+      "delayed": 0,
+      "bad": 0
+    },
+    {
+      "source": "vendor:8",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 5,
+      "delayed": 0,
+      "bad": 2
+    },
+    {
+      "source": "vendor:4",
+      "target": "ckpt:5:0:Factory",
+      "count": 7,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "vendor:7",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 5,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:8",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 5,
+      "delayed": 4,
+      "bad": 0
+    },
+    {
+      "source": "vendor:17",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 8,
+      "delayed": 4,
+      "bad": 0
+    },
+    {
+      "source": "vendor:11",
+      "target": "ckpt:2:0:Factory",
+      "count": 6,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:18",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 6,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:18",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 7,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:12",
+      "target": "ckpt:2:0:Factory",
+      "count": 3,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:3",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 8,
+      "delayed": 3,
+      "bad": 3
+    },
+    {
+      "source": "vendor:2",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 7,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:18",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 3,
+      "delayed": 1,
+      "bad": 2
+    },
+    {
+      "source": "vendor:6",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 2,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:5",
+      "target": "ckpt:2:0:Factory",
+      "count": 7,
+      "delayed": 3,
+      "bad": 0
+    },
+    {
+      "source": "vendor:19",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 4,
+      "delayed": 0,
+      "bad": 2
+    },
+    {
+      "source": "vendor:16",
+      "target": "ckpt:5:0:Factory",
+      "count": 10,
+      "delayed": 2,
+      "bad": 3
+    },
+    {
+      "source": "vendor:5",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 8,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "vendor:10",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 3,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "vendor:10",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 8,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:19",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 8,
+      "delayed": 1,
+      "bad": 2
+    },
+    {
+      "source": "vendor:14",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 7,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:3",
+      "target": "ckpt:5:0:Factory",
+      "count": 5,
+      "delayed": 4,
+      "bad": 0
+    },
+    {
+      "source": "vendor:20",
+      "target": "ckpt:5:0:Factory",
+      "count": 8,
+      "delayed": 4,
+      "bad": 3
+    },
+    {
+      "source": "vendor:17",
+      "target": "ckpt:2:0:Factory",
+      "count": 3,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "vendor:20",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 7,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:16",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 9,
+      "delayed": 2,
+      "bad": 3
+    },
+    {
+      "source": "vendor:6",
+      "target": "ckpt:2:0:Factory",
+      "count": 7,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:6",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 6,
+      "delayed": 1,
+      "bad": 2
+    },
+    {
+      "source": "vendor:11",
+      "target": "ckpt:5:0:Factory",
+      "count": 10,
+      "delayed": 0,
+      "bad": 3
+    },
+    {
+      "source": "vendor:16",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 5,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:17",
+      "target": "ckpt:5:0:Factory",
+      "count": 5,
+      "delayed": 3,
+      "bad": 0
+    },
+    {
+      "source": "vendor:15",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 9,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:9",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 6,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:9",
+      "target": "ckpt:5:0:Factory",
+      "count": 7,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:17",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 2,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:15",
+      "target": "ckpt:2:0:Factory",
+      "count": 3,
+      "delayed": 0,
+      "bad": 2
+    },
+    {
+      "source": "vendor:19",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 7,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:4",
+      "target": "ckpt:2:0:Factory",
+      "count": 7,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:14",
+      "target": "ckpt:5:0:Factory",
+      "count": 5,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "vendor:13",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 6,
+      "delayed": 1,
+      "bad": 2
+    },
+    {
+      "source": "vendor:16",
+      "target": "ckpt:2:0:Factory",
+      "count": 10,
+      "delayed": 2,
+      "bad": 2
+    },
+    {
+      "source": "vendor:7",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 4,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:4",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 6,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:9",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 7,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:5",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 9,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:2",
+      "target": "ckpt:5:0:Factory",
+      "count": 3,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "vendor:1",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 11,
+      "delayed": 2,
+      "bad": 3
+    },
+    {
+      "source": "vendor:15",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 7,
+      "delayed": 0,
+      "bad": 1
+    },
+    {
+      "source": "vendor:4",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 7,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:13",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 7,
+      "delayed": 3,
+      "bad": 1
+    },
+    {
+      "source": "vendor:2",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 6,
+      "delayed": 3,
+      "bad": 2
+    },
+    {
+      "source": "vendor:1",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 13,
+      "delayed": 5,
+      "bad": 3
+    },
+    {
+      "source": "vendor:7",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 4,
+      "delayed": 0,
+      "bad": 0
+    },
+    {
+      "source": "vendor:19",
+      "target": "ckpt:5:0:Factory",
+      "count": 3,
+      "delayed": 0,
+      "bad": 0
+    },
+    {
+      "source": "vendor:14",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 5,
+      "delayed": 1,
+      "bad": 2
+    },
+    {
+      "source": "vendor:5",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 7,
+      "delayed": 3,
+      "bad": 1
+    },
+    {
+      "source": "vendor:3",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 6,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:12",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 4,
+      "delayed": 0,
+      "bad": 0
+    },
+    {
+      "source": "vendor:17",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 5,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "vendor:9",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 4,
+      "delayed": 0,
+      "bad": 0
+    },
+    {
+      "source": "vendor:15",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 6,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "vendor:3",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 5,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:18",
+      "target": "ckpt:2:0:Factory",
+      "count": 5,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:10",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 10,
+      "delayed": 1,
+      "bad": 2
+    },
+    {
+      "source": "vendor:1",
+      "target": "ckpt:4:0:Fabricator",
+      "count": 7,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:8",
+      "target": "ckpt:6:0:Fabricator",
+      "count": 4,
+      "delayed": 1,
+      "bad": 1
+    },
+    {
+      "source": "vendor:14",
+      "target": "ckpt:2:0:Factory",
+      "count": 4,
+      "delayed": 0,
+      "bad": 2
+    },
+    {
+      "source": "vendor:15",
+      "target": "ckpt:5:0:Factory",
+      "count": 8,
+      "delayed": 3,
+      "bad": 1
+    },
+    {
+      "source": "vendor:8",
+      "target": "ckpt:2:0:Factory",
+      "count": 6,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:20",
+      "target": "ckpt:2:0:Factory",
+      "count": 10,
+      "delayed": 3,
+      "bad": 2
+    },
+    {
+      "source": "vendor:3",
+      "target": "ckpt:2:0:Factory",
+      "count": 4,
+      "delayed": 1,
+      "bad": 2
+    },
+    {
+      "source": "vendor:5",
+      "target": "ckpt:5:0:Factory",
+      "count": 1,
+      "delayed": 0,
+      "bad": 0
+    },
+    {
+      "source": "vendor:15",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 8,
+      "delayed": 2,
+      "bad": 1
+    },
+    {
+      "source": "vendor:12",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 2,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:11",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 4,
+      "delayed": 2,
+      "bad": 0
+    },
+    {
+      "source": "vendor:14",
+      "target": "ckpt:3:0:Fabricator",
+      "count": 5,
+      "delayed": 1,
+      "bad": 0
+    },
+    {
+      "source": "vendor:9",
+      "target": "ckpt:2:0:Factory",
+      "count": 4,
+      "delayed": 0,
+      "bad": 2
+    },
+    {
+      "source": "vendor:13",
+      "target": "ckpt:1:0:OverseasFactory",
+      "count": 4,
+      "delayed": 2,
+      "bad": 0
+    }
+  ]
+}

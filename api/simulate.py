@@ -290,6 +290,85 @@ def scenario_known_context_delay():
         **h.snapshot(),
     }
 
+def scenario_long_chain_recovery():
+    h = EmissionHandler(nodes=["Factory", "Port", "Customs", "RegionalWarehouse", "Site"])
+    h.add_edge("F-P", "Factory", "Port", expected_transit_minutes=180)
+    h.add_edge("P-C", "Port", "Customs", expected_transit_minutes=60)
+    h.add_edge("C-W", "Customs", "RegionalWarehouse", expected_transit_minutes=240)
+    h.add_edge("W-S", "RegionalWarehouse", "Site", expected_transit_minutes=90)
+
+    t0 = BASE
+    h.dispatch("F-P", t0)
+    h.acknowledge("F-P", t0)
+    t1 = t0 + timedelta(minutes=170)
+    h.resolve("F-P", t1)  # on time
+
+    h.dispatch("P-C", t1)
+    h.acknowledge("P-C", t1)
+    t2 = t1 + timedelta(minutes=75)
+    h.resolve("P-C", t2)  # delayed by 15 min
+
+    h.dispatch("C-W", t2)
+    h.apply_context_adjustment(
+        "C-W", extra_minutes=180,
+        reason="Pre-confirmed customs hold", at=t2 + timedelta(minutes=5),
+    )
+    h.acknowledge("C-W", t2 + timedelta(minutes=5))
+    t3 = t2 + timedelta(minutes=400)
+    h.resolve("C-W", t3)  # on time relative to adjusted deadline
+
+    h.dispatch("W-S", t3)
+    h.acknowledge("W-S", t3)
+    h.report_silence("W-S", checked_at=t3 + timedelta(minutes=140), grace_minutes=20)
+
+    return {
+        "title": "Long multi-hop chain — delay, anticipated hold, then silence",
+        "explains": (
+            "Four hops, three different outcomes in one run: an on-time leg, a genuine "
+            "delay, a large but pre-known hold that's absorbed cleanly by a context "
+            "adjustment, and a final leg that goes silent. This is closer to what a real "
+            "multi-leg shipment looks like — most legs behave, but the failure modes stack."
+        ),
+        **h.snapshot(),
+    }
+
+
+def scenario_branching_shipment_split():
+    h = EmissionHandler(nodes=["Vendor", "DistributionHub", "SiteA", "SiteB"])
+    h.add_edge("V-H", "Vendor", "DistributionHub", expected_transit_minutes=100)
+    h.add_edge("H-A", "DistributionHub", "SiteA", expected_transit_minutes=70)
+    h.add_edge("H-B", "DistributionHub", "SiteB", expected_transit_minutes=70)
+
+    t0 = BASE
+    h.dispatch("V-H", t0)
+    h.acknowledge("V-H", t0)
+    t1 = t0 + timedelta(minutes=95)
+    h.resolve("V-H", t1)  # on time
+
+    h.dispatch("H-A", t1)
+    h.acknowledge("H-A", t1)
+    h.resolve("H-A", t1 + timedelta(minutes=60))  # on time
+
+    h.dispatch("H-B", t1)
+    h.acknowledge("H-B", t1)
+    h.report_conflict(
+        "H-B",
+        at=t1 + timedelta(minutes=65),
+        signal_a="Driver app: en route, ETA 15 more minutes",
+        signal_b="SiteB gate log: shipment marked received",
+    )
+
+    return {
+        "title": "Branching shipment — shared upstream, diverging downstream fates",
+        "explains": (
+            "One shipment splits at a distribution hub into two site-bound legs. Both "
+            "start from an identical, on-time upstream state, but one resolves cleanly "
+            "while the other hits a signal conflict. This shows the graph isn't just a "
+            "line — risk doesn't distribute evenly once a shipment forks."
+        ),
+        **h.snapshot(),
+    }
+
 
 SCENARIO_TITLES = {
     "normal": "Normal path — everything on time",
@@ -297,6 +376,8 @@ SCENARIO_TITLES = {
     "silence": "Silent node — no signal at all",
     "conflicting_signals": "Conflicting signals from two independent sources",
     "known_context_delay": "Pre-known contextual delay folded into deadline",
+    "long_chain_recovery": "Long multi-hop chain — delay, anticipated hold, then silence",
+    "branching_shipment_split": "Branching shipment — shared upstream, diverging downstream fates",
 }
 
 SCENARIOS = {
@@ -305,6 +386,8 @@ SCENARIOS = {
     "silence": scenario_silence,
     "conflicting_signals": scenario_conflicting_signals,
     "known_context_delay": scenario_known_context_delay,
+    "long_chain_recovery": scenario_long_chain_recovery,
+    "branching_shipment_split": scenario_branching_shipment_split,
 }
 
 

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Supply Chain Network — Data Explorer</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d;
+    --text: #e6edf3; --muted: #8b949e;
+    --on_time: #3fb950; --delayed: #f85149; --unknown: #d29922; --conflicted: #a371f7;
+    --neutral: #58a6ff;
+    --node-vendor: #58a6ff; --node-checkpoint: #f0883e; --node-project: #3fb950;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; padding: 28px; }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  a.back { color: var(--neutral); text-decoration: none; font-size: 13px; }
+  p.sub { color: var(--muted); margin-top: 6px; margin-bottom: 20px; font-size: 13px; }
+
+  .layout { display: flex; gap: 20px; align-items: flex-start; }
+  .graph-wrap {
+    flex: 1; min-width: 0; overflow-x: auto;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+  }
+  .panel {
+    flex: 0 0 320px; position: sticky; top: 28px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 18px;
+    font-size: 13px; max-height: 85vh; overflow-y: auto;
+  }
+  .panel h2 { font-size: 15px; margin-top: 0; }
+  .panel .muted { color: var(--muted); }
+  .panel table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; }
+  .panel td, .panel th { padding: 4px 6px; border-bottom: 1px solid var(--border); text-align: left; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10.5px;
+    font-weight: 600; color: #0d1117; }
+  .badge.on_time { background: var(--on_time); }
+  .badge.delayed { background: var(--delayed); }
+  .badge.silence { background: var(--unknown); }
+  .badge.conflict { background: var(--conflicted); }
+
+  .legend { display: flex; gap: 18px; margin-bottom: 14px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+  .legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; }
+
+  .node-label { fill: var(--text); font-size: 9px; font-family: inherit; }
+  .node-circle { stroke: #0d1117; stroke-width: 1.5; cursor: pointer; }
+  .node-circle.selected { stroke: #fff; stroke-width: 2.5; }
+</style>
+</head>
+<body>
+
+<a class="back" href="/index.html">&larr; Back to live demo</a>
+<h1>Supply Chain Network — Data Explorer</h1>
+<p class="sub">Aggregated across all synthetic orders. Not simulated in real time yet — this is a static view of what the dataset contains. Click any node for details.</p>
+
+<div class="legend">
+  <span><span class="dot" style="background:var(--node-vendor)"></span>Vendor</span>
+  <span><span class="dot" style="background:var(--node-checkpoint)"></span>Checkpoint (route hop)</span>
+  <span><span class="dot" style="background:var(--node-project)"></span>Project / Site</span>
+  <span style="margin-left:12px;">Edge color = delay+silence+conflict rate: <span style="color:var(--on_time)">low</span> / <span style="color:var(--unknown)">medium</span> / <span style="color:var(--delayed)">high</span></span>
+</div>
+
+<div class="layout">
+  <div class="graph-wrap"><div id="graph-container">Loading graph…</div></div>
+  <div class="panel" id="info-panel">
+    <h2>Select a node</h2>
+    <p class="muted">Click any vendor, checkpoint, or project node in the graph to see its details here.</p>
+  </div>
+</div>
+
+<script>
+const COLOR = { vendor: "var(--node-vendor)", checkpoint: "var(--node-checkpoint)", project: "var(--node-project)" };
+
+function edgeColor(e) {
+  const badRatio = (e.delayed + e.bad) / e.count;
+  if (badRatio < 0.15) return "var(--on_time)";
+  if (badRatio < 0.35) return "var(--unknown)";
+  return "var(--delayed)";
+}
+
+function layoutGraph(data) {
+  const byDepth = {};
+  data.nodes.forEach(n => { (byDepth[n.depth] = byDepth[n.depth] || []).push(n); });
+  Object.values(byDepth).forEach(arr => arr.sort((a, b) => a.label.localeCompare(b.label)));
+
+  const colSpacing = 105, rowSpacing = 150, marginX = 60, marginY = 50;
+  const maxRowCount = Math.max(...Object.values(byDepth).map(a => a.length));
+  const width = marginX * 2 + (maxRowCount - 1) * colSpacing + 20;
+
+  const pos = {};
+  Object.keys(byDepth).sort((a, b) => a - b).forEach(depth => {
+    const row = byDepth[depth];
+    const rowWidth = (row.length - 1) * colSpacing;
+    const startX = (width - rowWidth) / 2;
+    row.forEach((n, i) => {
+      pos[n.id] = { x: startX + i * colSpacing, y: marginY + Number(depth) * rowSpacing };
+    });
+  });
+
+  const maxDepth = Math.max(...Object.keys(byDepth).map(Number));
+  const height = marginY * 2 + maxDepth * rowSpacing + 20;
+  return { pos, width, height };
+}
+
+function renderGraph(data) {
+  const { pos, width, height } = layoutGraph(data);
+  const nodeById = Object.fromEntries(data.nodes.map(n => [n.id, n]));
+
+  let svg = `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">
+    <defs>
+      <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6 Z" fill="var(--muted)" />
+      </marker>
+    </defs>`;
+
+  data.edges.forEach(e => {
+    const p1 = pos[e.source], p2 = pos[e.target];
+    if (!p1 || !p2) return;
+    const color = edgeColor(e);
+    const width_px = Math.min(6, 1.2 + Math.log2(e.count + 1));
+    const dx = p2.x - p1.x, dy = p2.y - p1.y;
+    const len = Math.sqrt(dx * dx + dy * dy) || 1;
+    const nx = dx / len, ny = dy / len, r = 14;
+    const x1 = p1.x + nx * r, y1 = p1.y + ny * r;
+    const x2 = p2.x - nx * r, y2 = p2.y - ny * r;
+    svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}"
+             stroke-width="${width_px}" opacity="0.75" marker-end="url(#arrow)" />`;
+  });
+
+  data.nodes.forEach(n => {
+    const p = pos[n.id];
+    if (!p) return;
+    svg += `
+      <g class="node-g" data-id="${n.id}">
+        <circle class="node-circle" cx="${p.x}" cy="${p.y}" r="13" fill="${COLOR[n.type]}" />
+        <text class="node-label" x="${p.x}" y="${p.y + 26}" text-anchor="middle">${n.label}</text>
+      </g>`;
+  });
+
+  svg += `</svg>`;
+  const container = document.getElementById("graph-container");
+  container.innerHTML = svg;
+
+  container.querySelectorAll(".node-g").forEach(g => {
+    g.addEventListener("click", () => {
+      container.querySelectorAll(".node-circle").forEach(c => c.classList.remove("selected"));
+      g.querySelector(".node-circle").classList.add("selected");
+      renderInfoPanel(nodeById[g.dataset.id]);
+    });
+  });
+}
+
+function renderInfoPanel(node) {
+  const panel = document.getElementById("info-panel");
+  const i = node.info;
+
+  if (node.type === "vendor") {
+    const rows = i.sample_orders.map(o => `
+      <tr><td>#${o.order_id}</td><td>${o.material_type}</td><td>${o.quantity}</td>
+      <td><span class="badge ${o.final_status}">${o.final_status}</span></td></tr>`).join("");
+    panel.innerHTML = `
+      <h2>${node.label} <span class="muted" style="font-size:11px;">(vendor)</span></h2>
+      <p><span class="muted">Category:</span> ${i.category}</p>
+      <p><span class="muted">Total orders:</span> ${i.orders_count}</p>
+      <p><span class="muted">Observed on-time rate:</span> ${i.observed_on_time_rate_pct ?? "—"}%</p>
+      <p class="muted" style="margin-top:12px;">Sample orders</p>
+      <table><thead><tr><th>Order</th><th>Material</th><th>Qty</th><th>Status</th></tr></thead>
+      <tbody>${rows}</tbody></table>`;
+  } else if (node.type === "project") {
+    const rows = i.sample_orders.map(o => `
+      <tr><td>#${o.order_id}</td><td>${o.material_type}</td><td>V-${o.vendor_id}</td>
+      <td><span class="badge ${o.final_status}">${o.final_status}</span></td></tr>`).join("");
+    panel.innerHTML = `
+      <h2>${node.label} <span class="muted" style="font-size:11px;">(project)</span></h2>
+      <p><span class="muted">Total orders:</span> ${i.orders_count}</p>
+      <p class="muted" style="margin-top:12px;">Sample orders</p>
+      <table><thead><tr><th>Order</th><th>Material</th><th>Vendor</th><th>Status</th></tr></thead>
+      <tbody>${rows}</tbody></table>`;
+  } else {
+    const sb = i.state_breakdown;
+    const stateRows = Object.entries(sb).map(([s, c]) => `
+      <tr><td><span class="badge ${s}">${s}</span></td><td>${c}</td>
+      <td>${Math.round(100 * c / i.legs_through)}%</td></tr>`).join("");
+    const events = i.context_events_for_this_role.length
+      ? i.context_events_for_this_role.map(e => `
+          <li>${e.reason} (${e.start_date} → ${e.end_date}) —
+          ${e.pre_announced ? "pre-announced" : "unannounced"}</li>`).join("")
+      : `<li class="muted">None recorded for this role</li>`;
+    panel.innerHTML = `
+      <h2>${node.label} <span class="muted" style="font-size:11px;">(checkpoint)</span></h2>
+      <p><span class="muted">Route:</span> R${i.route_id}, hop ${i.seq_index}</p>
+      <p><span class="muted">Legs through this node:</span> ${i.legs_through}</p>
+      <p class="muted" style="margin-top:12px;">State breakdown</p>
+      <table><thead><tr><th>State</th><th>Count</th><th>%</th></tr></thead>
+      <tbody>${stateRows}</tbody></table>
+      <p class="muted" style="margin-top:12px;">Context events tied to this role</p>
+      <ul style="padding-left:18px; margin:6px 0;">${events}</ul>`;
+  }
+}
+
+fetch("/data/graph_data.json")
+  .then(res => {
+    if (!res.ok) throw new Error(`Server returned ${res.status}`);
+    return res.json();
+  })
+  .then(renderGraph)
+  .catch(err => {
+    document.getElementById("graph-container").innerHTML =
+      `<p style="color:var(--delayed)">Failed to load graph data: ${err.message}. Make sure data/graph_data.json is committed and pushed.</p>`;
+  });
+</script>
+
+</body>
+</html>
