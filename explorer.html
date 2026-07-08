@@ -159,21 +159,39 @@ function renderGraph(data) {
   const container = document.getElementById("graph-container");
   container.innerHTML = svg;
 
+  function resetView() {
+    container.querySelectorAll(".edge-line").forEach(l => l.style.opacity = "0.75");
+    container.querySelectorAll(".node-g").forEach(ng => ng.style.opacity = "1");
+    container.querySelectorAll(".node-circle").forEach(c => c.classList.remove("selected"));
+    const panel = document.getElementById("info-panel");
+    panel.innerHTML = `<h2>Select a node</h2><p class="muted">Click any vendor, checkpoint, or project node in the graph to see its details here.</p>`;
+  }
+
+  let currentlySelectedId = null;
+
   container.querySelectorAll(".node-g").forEach(g => {
     g.addEventListener("click", () => {
-      const selectedId = g.dataset.id;
+      const clickedId = g.dataset.id;
+
+      if (currentlySelectedId === clickedId) {
+        resetView();
+        currentlySelectedId = null;
+        return;
+      }
+
+      currentlySelectedId = clickedId;
       container.querySelectorAll(".node-circle").forEach(c => c.classList.remove("selected"));
       g.querySelector(".node-circle").classList.add("selected");
-      renderInfoPanel(nodeById[selectedId]);
+      renderInfoPanel(nodeById[clickedId]);
 
       const connected = new Set(
-        data.edges.filter(e => e.source === selectedId || e.target === selectedId)
+        data.edges.filter(e => e.source === clickedId || e.target === clickedId)
                   .flatMap(e => [e.source, e.target])
       );
-      connected.add(selectedId);
+      connected.add(clickedId);
 
       container.querySelectorAll(".edge-line").forEach(line => {
-        const isConnected = line.dataset.source === selectedId || line.dataset.target === selectedId;
+        const isConnected = line.dataset.source === clickedId || line.dataset.target === clickedId;
         line.style.opacity = isConnected ? "0.95" : "0.06";
       });
       container.querySelectorAll(".node-g").forEach(ng => {
@@ -184,9 +202,8 @@ function renderGraph(data) {
 
   container.addEventListener("dblclick", (e) => {
     if (e.target.closest(".node-g")) return;
-    container.querySelectorAll(".edge-line").forEach(l => l.style.opacity = "0.75");
-    container.querySelectorAll(".node-g").forEach(ng => ng.style.opacity = "1");
-    container.querySelectorAll(".node-circle").forEach(c => c.classList.remove("selected"));
+    resetView();
+    currentlySelectedId = null;
   });
 }
 
